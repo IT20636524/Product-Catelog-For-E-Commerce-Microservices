@@ -23,6 +23,9 @@ mongoose
 const userRouter = require("./routes/users");
 app.use("/api/user", userRouter);
 
+const productRouter = require("./routes/products");
+app.use("/api/product", productRouter);
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, ()=>{
