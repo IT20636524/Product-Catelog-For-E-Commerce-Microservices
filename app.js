@@ -20,11 +20,14 @@ mongoose
   .then(console.log("Connected to MongoDB"))
   .catch((err) => console.log(err));
 
-const userRouter = require("./routes/users");
+const userRouter = require("./routes/userRoutes");
 app.use("/api/user", userRouter);
 
-const productRouter = require("./routes/products");
+const productRouter = require("./routes/productRoutes");
 app.use("/api/product", productRouter);
+
+const reviewRouter = require("./routes/reviewRoutes");
+app.use("/api/review", reviewRouter);
 
 const PORT = process.env.PORT || 5000;
 
