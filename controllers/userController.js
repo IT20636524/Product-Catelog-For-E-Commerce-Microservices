@@ -49,7 +49,8 @@ const registerUser =async (req, res) => {
 
 const loginUser = async (req, res) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const query = { email: req.body.email.toString() };
+    const user = await User.findOne(query);
 
     console.log(req.body.password);
     if (!user) {
@@ -63,7 +64,6 @@ const loginUser = async (req, res) => {
         const { password, ...others } = user._doc;
         console.log(others);
         sendTokenResponse(res, others, "successful");
-        // res.status(200).json(res, others);
       }
     }
   } catch (err) {
