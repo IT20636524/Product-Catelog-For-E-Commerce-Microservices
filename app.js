@@ -29,6 +29,10 @@ app.use("/api/product", productRouter);
 const reviewRouter = require("./routes/reviewRoutes");
 app.use("/api/review", reviewRouter);
 
+app.get("/",(req, res)=>{
+  res.status(200).json({message: "Everything is good here 🙌"});
+})
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, ()=>{

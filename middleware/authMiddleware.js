@@ -37,4 +37,10 @@ export const sellerProtect = asyncHandler(async (req, res, next) => {
   next();
 });
 
+export const buyerProtect = asyncHandler(async (req, res, next) => {
+  if (req.user.role !== "BUYER")
+    return makeResponse({ res, status: 403, message: "Unauthorized" });
+  next();
+});
+
 module.exports = {protect, sellerProtect}
