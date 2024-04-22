@@ -46,4 +46,28 @@ const getReviews = async (req, res) => {
   }
 };
 
-module.exports = {addReview, getReviews}
+const getAllReviews = async (req, res) => {
+  try {
+    const products = await Product.find({});
+
+    let allReviews = [];
+
+    products.forEach((product) => {
+      const { name, category, reviews } = product;
+      const productReviews = reviews.map((review) => ({
+        productName: name,
+        category: category,
+        review: review,
+      }));
+
+      allReviews = allReviews.concat(productReviews);
+    });
+
+    res.status(200).json(allReviews);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+
+module.exports = { addReview, getReviews, getAllReviews };
