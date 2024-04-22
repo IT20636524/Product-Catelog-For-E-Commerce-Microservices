@@ -57,7 +57,6 @@ const loginUser = async (req, res) => {
       res.status(400).json("Wrong credentials");
     } else {
       const validated = await bcrypt.compare(req.body.password, user.password);
-      // !validated && res.status(400).json("Wrong credentials")
       if (!validated) {
         res.status(400).json("Wrong credentials");
       } else {
