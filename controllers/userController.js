@@ -70,4 +70,13 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser };
+const getOneUser = async (req, res) => {
+  try {
+    const user = await User.findOne({ userId: req.params.userId });
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+module.exports = { registerUser, loginUser, getOneUser };
