@@ -31,16 +31,16 @@ const protect = asyncHandler(async (req, res, next) => {
 });
 
 //To protect routes for only sellers
-export const sellerProtect = asyncHandler(async (req, res, next) => {
+const sellerProtect = asyncHandler(async (req, res, next) => {
   if (req.user.role !== "SELLER")
     return makeResponse({ res, status: 403, message: "Unauthorized" });
   next();
 });
 
-export const buyerProtect = asyncHandler(async (req, res, next) => {
+const buyerProtect = asyncHandler(async (req, res, next) => {
   if (req.user.role !== "BUYER")
     return makeResponse({ res, status: 403, message: "Unauthorized" });
   next();
 });
 
-module.exports = {protect, sellerProtect}
+module.exports = {protect, sellerProtect, buyerProtect}
